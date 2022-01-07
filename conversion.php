@@ -1,38 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Temperature Converter: IT 262 Group 1</title>
-<link href="css/styles.css" type="text/css" rel="stylesheet">
-</head>
-
-<body>
-<form action ="
-<?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
-" method="post">
-<fieldset>
-    <legend>Group 1's Temperature Converter</legend>
-    <label for="degree">How many degrees?</label>
-
- <input type = "text" name = "degree" size=4> 
- 
- <label for="ogScale">Original scale?</label>
- <select name="ogScale"><option value="fahr">Fahrenheit</option><option value="cel">Celcius</option> <option value="kel">Kelvin</option> <option value="ran">Rankine</option> </select> 
- <label for="newScale">Desired scale?</label>
- <select name="newScale"><option value="fahr">Fahrenheit</option><option value="cel">Celcius</option> <option value="kel">Kelvin</option> <option value="ran">Rankine</option> </select> 
- 
-
- <input type = "submit" value = "Convert"/> 
- </form> 
 <?php
+
+$degree = '';
+$ogScale = '';
+$newScale = '';
+
+$degree_Err = '';
+$ogScale_Err = '';
+$newScale_Err = '';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if(isset($_POST['degree'])) { // making sure user has filled out degree value
+    if(empty($_POST['degree'])) {
+        $degree_Err = 'Please enter a value!';// making sure user has filled out degree value
+    }
+    else
+    { 
+    $degree = $_POST['degree'];}
+
+    if(empty($_POST['ogScale'])) {
+        $degree_Err = 'Please select the original scale!';// making sure user has filled out degree value
+    }
+    else
+    { 
+    $degree = $_POST['ogScale'];}
+
+    if(empty($_POST['newScale'])) {
+        $degree_Err = 'Please select the desired scale!';// making sure user has filled out degree value
+    }
+    else
+    { 
+    $degree = $_POST['newScale'];}
+
+    if(isset($_POST['degree'])) {
     $degree = $_POST['degree'];
     $ogScale = $_POST['ogScale'];
     $newScale = $_POST['newScale'];
-
+    
     $f2c = ($degree - 32) * (5/9); // conversion formula
     $round_f2c = number_format($f2c, 2); // rounding to two decimals
 
@@ -119,17 +122,67 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo $round_k2f;
         }
 
-    } 
-
+    } // end inner if
+    else {
+        echo 'Please enter a numeric value!';
     }
-}
 
-
-
-
-
-
+    } // end outer if
+    
+} // end server request
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Temperature Converter: IT 262 Group 1</title>
+<link href="css/styles.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<form action ="
+<?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
+" method="post">
+<fieldset>
+    <legend>Group 1's Temperature Converter</legend>
+    <label for="degree">How many degrees?</label>
+    <input type = "text" name = "degree" size=4> 
+    <span class="error"><?php echo $degree_Err; ?></span>
+ 
+ <label for="ogScale">Original scale?</label>
+ <select name="ogScale"><option value="" NULL
+<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == NULL) echo 'selected = "unselected" '
+;?>>
+<option value="fahr"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'fahr') echo 'selected = "selected" '
+;?>>Fahrenheit</option>
+<option value="cel"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'cel') echo 'selected = "selected" '
+;?>>Celcius</option> 
+<option value="kel"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'kel') echo 'selected = "selected" '
+;?>>Kelvin</option> 
+<option value="ran"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'ran') echo 'selected = "selected" '
+;?>>Rankine</option> 
+</select> 
+<span class="error"><?php echo $ogScale_Err; ?></span>
+
+ <label for="newScale">Desired scale?</label>
+ <select name="newScale">
+<option value="" NULL
+<?php if(isset($_POST['newScale']) && $_POST['newScale'] == NULL) echo 'selected = "unselected" '
+;?>>
+<option value="fahr"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'fahr') echo 'selected = "selected" '
+;?>>Fahrenheit</option>
+<option value="cel"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'cel') echo 'selected = "selected" '
+;?>>Celcius</option> 
+<option value="kel"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'kel') echo 'selected = "selected" '
+;?>>Kelvin</option> 
+<option value="ran"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'ran') echo 'selected = "selected" '
+;?>>Rankine</option> 
+</select> 
+<span class="error"><?php echo $newScale_Err; ?></span>
+
+ <input type = "submit" value = "Convert"/> 
+ </form> 
 </body>
 
 </html>
