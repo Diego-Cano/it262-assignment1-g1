@@ -119,10 +119,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo $round_k2f;
         }
 
-    } 
-
+    } // end inner if
+    else {
+        echo 'Please enter a numeric value!';
     }
-}
+
+    } // end outer if
+    
+} // end server request
 
 
 
