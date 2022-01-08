@@ -24,10 +24,8 @@
         <span class="error"><?php echo $ogScale_Err; ?></span>
         
       </div>
-      <p> = </p>
       <div class="form-group">
           <!-- <label class="form-label" for="newScale">Desired scale?</label> -->
-        <input type="text" name="degree" size=4>
 
         <select name="newScale">
         <option value="" NULL
