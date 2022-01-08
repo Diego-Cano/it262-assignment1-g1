@@ -74,52 +74,52 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
 
-        if (($ogScale == fahr) && ($newScale == cel)){ // Fahrenheit --> Celcius
-            echo $round_f2c;
+        if (($ogScale == "fahr") && ($newScale == "cel")){ // Fahrenheit --> Celcius
+            echo '<div class="form-tag"><p>'. $round_f2c .'</p></div>';
         }
 
-        if (($ogScale == fahr) && ($newScale == kel)){ // Fahrenheit --> Kelvin
-            echo $round_f2k;
+        if (($ogScale == "fahr") && ($newScale == "kel")){ // Fahrenheit --> Kelvin
+            echo '<div class="form-tag"><p>'. $round_f2k . '</p></div>';
         }
 
-        if (($ogScale == fahr) && ($newScale == ran)){ // Fahrenheit --> Rankine
-            echo $round_f2r;
+        if (($ogScale == "fahr") && ($newScale == "ran")){ // Fahrenheit --> Rankine
+            echo '<div class="form-tag"><p>'. $round_f2r . '</p></div>';
         }
 
-        if (($ogScale == cel) && ($newScale == fahr)){ // Celcius --> Fahrenheit
-            echo $round_c2f;
+        if (($ogScale == "cel") && ($newScale == "fahr")){ // Celcius --> Fahrenheit
+            echo '<div class="form-tag"><p>'. $round_c2f . '</p></div>';
         }
 
-        if (($ogScale == cel) && ($newScale == kel)){ // Celcius --> Kelvin
-            echo $round_c2k;
+        if (($ogScale == "cel") && ($newScale == "kel")){ // Celcius --> Kelvin
+            echo '<div class="form-tag"><p>'. $round_c2k . '</p></div>';
         }
 
-        if (($ogScale == cel) && ($newScale == ran)){ // Celcius --> Rankine
-            echo $round_c2r;
+        if (($ogScale == "cel") && ($newScale == "ran")){ // Celcius --> Rankine
+            echo '<div class="form-tag"><p>'. $round_c2r . '</p></div>';
         }
 
-        if (($ogScale == kel) && ($newScale == fahr)){ // Kelvin --> Fahrenheit
-            echo $round_k2f;
+        if (($ogScale == "kel") && ($newScale == "fahr")){ // Kelvin --> Fahrenheit
+            echo '<div class="form-tag"><p>'. $round_k2f . '</p></div>';
         }
 
-        if (($ogScale == kel) && ($newScale == cel)){ // Kelvin --> Celcius
-            echo $round_k2c;
+        if (($ogScale == "kel") && ($newScale == "cel")){ // Kelvin --> Celcius
+            echo '<div class="form-tag"><p>'. $round_k2c . '</p></div>';
         }    
 
-        if (($ogScale == kel) && ($newScale == ran)){ // Kelvin --> Rankine
-            echo $round_k2r;
+        if (($ogScale == "kel") && ($newScale == ran)){ // Kelvin --> Rankine
+            echo '<div class="form-tag"><p>'. $round_k2r . '</p></div>';
         }
 
-        if (($ogScale == ran) && ($newScale == fahr)){ // Rankine --> Fahrenheit
-            echo $round_k2f;
+        if (($ogScale == "ran") && ($newScale == "fahr")){ // Rankine --> Fahrenheit
+            echo '<div class="form-tag"><p>'. $round_k2f . '</p></div>';
         }
 
-        if (($ogScale == ran) && ($newScale == cel)){ // Rankine --> Fahrenheit
-            echo $round_k2f;
+        if (($ogScale == "ran") && ($newScale == "cel")){ // Rankine --> Fahrenheit
+            echo '<div class="form-tag"><p>'. $round_k2f . '</p></div>';
         }
 
-        if (($ogScale == ran) && ($newScale == kel)){ // Rankine --> Fahrenheit
-            echo $round_k2f;
+        if (($ogScale == "ran") && ($newScale == "kel")){ // Rankine --> Fahrenheit
+            echo '<div class="form-tag"><p>'. $round_k2f . '</p></div>';
         }
 
     } // end inner if

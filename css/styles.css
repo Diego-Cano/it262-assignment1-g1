@@ -1,0 +1,47 @@
+/* form styles */
+form, fieldset, .form-group, .form-row{
+  display: flex;
+}
+fieldset, .form-group{
+  flex-direction: column;
+}
+input, form > label {
+  display: block;
+}
+input, select, .form-tag {
+  margin: 4px 0px;
+  height: 45px;
+}
+form, .form-row {
+  justify-content: center;
+  margin: 12px;
+}
+fieldset {
+  border: none;
+  box-shadow: 15px 14px 26px rgba(150, 147, 150, 0.1);
+  padding: 20px;
+  width: 400px;
+}
+input{
+  text-align: center;
+}
+input[type="submit"]{
+  width: 80%;
+  margin: 10px auto;
+}
+legend {
+  font-size: 1.75em;
+}
+.form-group{
+  margin: 0px 10px;
+  width: 40%;
+}
+.form-label {
+  margin: 0px 5px;
+}
+.form-tag {
+  /* border: 1px solid red; */
+  position: absolute;
+  top: 14%;
+  right: 45%;
+}
