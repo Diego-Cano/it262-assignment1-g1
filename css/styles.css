@@ -1,4 +1,7 @@
 /* form styles */
+*{
+  font-family: Helvetica, sans-serif;
+}
 form, fieldset, .form-group, .form-row{
   display: flex;
 }
@@ -8,30 +11,61 @@ fieldset, .form-group{
 input, form > label {
   display: block;
 }
-input, select, .form-tag {
-  margin: 4px 0px;
+input, .form-tag, .form-blank {
   height: 45px;
+}
+input, .form-blank {
+  margin: 4px 0px;
 }
 form, .form-row {
   justify-content: center;
-  margin: 12px;
+}
+select {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  -ms-appearance:none;
+  appearance:auto;
+  outline:0;
+  box-shadow:none;
+  flex: 1;
+  padding: .5em .5em;
+  cursor:pointer;
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  height: 50px;
+}
+select::-ms-expand {
+   display: none;
 }
 fieldset {
   border: none;
   box-shadow: 15px 14px 26px rgba(150, 147, 150, 0.1);
   padding: 20px;
-  width: 400px;
+  width: 33%
 }
 input{
   text-align: center;
 }
-input[type="submit"]{
-  width: 80%;
-  margin: 10px auto;
-}
-legend {
+input, .form-tag > p, h1{
   font-size: 1.75em;
 }
+input[type="submit"]{
+  border: none;
+  border-radius: 4px;
+  box-shadow:
+  0 1px 1px hsl(0deg 0% 0% / 0.075),
+  0 2px 2px hsl(0deg 0% 0% / 0.075),
+  0 4px 4px hsl(0deg 0% 0% / 0.075),
+  0 8px 8px hsl(0deg 0% 0% / 0.075),
+  0 16px 16px hsl(0deg 0% 0% / 0.075);
+  background:#1462ff;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+  width: 83%;
+  margin: 10px auto;
+}
+/* form classes */
 .form-group{
   margin: 0px 10px;
   width: 40%;
@@ -40,8 +74,16 @@ legend {
   margin: 0px 5px;
 }
 .form-tag {
-  /* border: 1px solid red; */
   position: absolute;
-  top: 14%;
-  right: 45%;
+  top: 10%;
+  right: 43%;
+}
+.form-blank{
+  width: 100%;
+}
+.select {
+  position: relative;
+  display: flex;
+  line-height: 2;
+  border-radius: .25em;
 }
