@@ -78,7 +78,7 @@ if (isset($_POST['convert'])) {
 
 ?>
 
-
+    <?php include 'includes/form.php';?>
 </body>
 
 </html>
