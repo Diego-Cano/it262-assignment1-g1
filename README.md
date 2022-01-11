@@ -7,7 +7,7 @@ This repo contains the first group project for Seattle Central's IT 262 course. 
 2. Does not allow incorrect data and provides feedback for the user when incorrect data is entered.
 3. Is built to [PSR-1](https://www.php-fig.org/psr/psr-1/) and [PSR-2](https://www.php-fig.org/psr/psr-2/) standards as closely as possible.
 
-Additionally, this application will include four temperature types (Fahrenheit, Celcius, Kelvin and Rankine) convert back and forth between the types of temperatures and round the result to two decimal points. 
+Additionally, this application will include four temperature types (Fahrenheit, celsius, Kelvin and Rankine) convert back and forth between the types of temperatures and round the result to two decimal points. 
 ***
 ## Roles: 
 

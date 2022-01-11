@@ -1,29 +1,25 @@
-
 <form action ="
 <?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
-" method="post">
+" method=<?=$form->method?>>
   <fieldset>
-    <h1>Temperature Conversion</h1>
+    <h1><?=$temperature_form->title?></h1>
     <!-- <label class="form-label"  for="ogScale">Original scale?</label> -->
     <div class="form-row">
       <div class="form-group">
-        <!-- <label for="degree">How many degrees?</label> -->
         <input type="number" name="degree" size=4 placeholder="degrees">
-
         <select name="ogScale" class="select"><option diasbled value="" NULL
         <?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == NULL) echo 'selected = "unselected" '
         ;?>> Choose </option>
         <option value="fahr"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'fahr') echo 'selected = "selected" '
         ;?>>Fahrenheit</option>
         <option value="cel"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'cel') echo 'selected = "selected" '
-        ;?>>Celcius</option> 
+        ;?>>celsius</option> 
         <option value="kel"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'kel') echo 'selected = "selected" '
         ;?>>Kelvin</option> 
         <option value="ran"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'ran') echo 'selected = "selected" '
         ;?>>Rankine</option>
         </select> 
         <span class="error"><?php echo $ogScale_Err; ?></span>
-        
       </div>
       <div class="form-group">
           <!-- <label class="form-label" for="newScale">Desired scale?</label> -->
@@ -36,7 +32,7 @@
         <option value="fahr"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'fahr') echo 'selected = "selected" '
         ;?>>Fahrenheit</option>
         <option value="cel"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'cel') echo 'selected = "selected" '
-        ;?>>Celcius</option> 
+        ;?>>celsius</option> 
         <option value="kel"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'kel') echo 'selected = "selected" '
         ;?>>Kelvin</option> 
         <option value="ran"<?php if(isset($_POST['newScale']) && $_POST['newScale'] == 'ran') echo 'selected = "selected" '
@@ -48,36 +44,4 @@
     <span class="error"><?php echo $newScale_Err; ?></span>
 
   <input type="submit" value="Convert"/> 
- </form> 
-
-<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-    <table>
-        <tr>
-            <td>Enter temperature.</td>
-            <td><input type="text" name="user_temp" pattern="[0-9]{1,}" required>
-                <select name="init_type">
-                    <option disabled>Select Temperature Type</option>
-                    <option value="farenheit">Farenheit</option>
-                    <option value="celsius">Celsius</option>
-                    <option value="kelvin">Kelvin</option>
-                </select>
-            </td>
-
-        </tr>
-        <tr>
-            <td>See the temperature in:</td>
-            <td><select name="temp_type" id="temp_type">
-                    <option disabled>Select Temperature Type</option>
-                    <option value="farenheit">Farenheit</option>
-                    <option value="celsius">Celsius</option>
-                    <option value="kelvin">Kelvin</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><input type="submit" name="convert" id="convert" value="Convert"></td>
-            <td><input type="reset" name="reset" id="reset" value="Reset"></td>
-        </tr>
-    </table>
 </form>
-
