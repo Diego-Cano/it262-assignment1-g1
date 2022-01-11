@@ -194,6 +194,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (($ogScale == "ran") && ($newScale == "kel")){ // Rankine --> Fahrenheit
             echo '<div class="form-tag"><p>'. $round_k2f . '</p></div>';
         }
+            //Making sure a different value is picked
+
+        if(($ogScale == "fahr") && ($newScale == "fahr")){
+                echo 'Please choose a different temperature type to convert!';
+        } 
+        if(($ogScale == "cel") && ($newScale == "cel")){
+                echo 'Please choose a different temperature type to convert!';
+        }
+        if(($ogScale == "kel") && ($newScale == "kel")){
+                echo 'Please choose a different temperature type to convert!';
+        }
+        if(($ogScale == "ran") && ($newScale == "ran")){
+                echo 'Please choose a different temperature type to convert!';
+        }
 
     } // end inner if
     else {
