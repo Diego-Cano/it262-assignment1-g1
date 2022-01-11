@@ -43,5 +43,5 @@
     <span class="error"><?php echo $degree_Err; ?></span>
     <span class="error"><?php echo $newScale_Err; ?></span>
 
-  <input type="submit" value="Convert"/> 
-</form>
+  <input type="submit" value="Convert"/>
+ </form> 
