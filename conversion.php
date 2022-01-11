@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo '<div class="form-tag"><p>'. $round_k2c . '</p></div>';
         }    
 
-        if (($ogScale == "kel") && ($newScale == ran)){ // Kelvin --> Rankine
+        if (($ogScale == "kel") && ($newScale == "ran")){ // Kelvin --> Rankine
             echo '<div class="form-tag"><p>'. $round_k2r . '</p></div>';
         }
 
