@@ -70,41 +70,41 @@ class ConverterForm
   public function generateOutput($scale1, $scale2, $conv) {
     if ($scale1 == "fahr") {
       if ($scale2 == "cel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->fahrenheitToCelsius($conv) .'</p></div>';
+        $converted_out = $this->fahrenheitToCelsius($conv);
       } elseif ($scale2 == "kel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->fahrenheitToKelvin($conv) .'</p></div>';
+        $converted_out = $this->fahrenheitToKelvin($conv);
       } elseif ($scale2 == "ran") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->fahrenheitToRankine($conv) .'</p></div>';
+        $converted_out = $this->fahrenheitToRankine($conv);
       }
     }
     if ($scale1 == "cel") {
       if ($scale2 == "fahr") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->celsiusToFahrenheit($conv) .'</p></div>';
+        $converted_out = $this->celsiusToFahrenheit($conv);
       } elseif ($scale2 == "kel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->celsiusToKelvin($conv) .'</p></div>';
+        $converted_out = $this->celsiusToKelvin($conv);
       } elseif ($scale2 == "ran") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->celsiusToRankine($conv) .'</p></div>';
+        $converted_out = $this->celsiusToRankine($conv);
       }
     }
     if ($scale1 == "kel") {
       if ($scale2 == "fahr") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->kelvinToFahrenheit($conv) .'</p></div>';
+        $converted_out = $this->kelvinToFahrenheit($conv);
       } elseif ($scale2 == "cel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->kelvinToCelsius($conv) .'</p></div>';
+        $converted_out = $this->kelvinToCelsius($conv);
       } elseif ($scale2 == "ran") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->kelvinToRankine($conv) .'</p></div>';
+        $converted_out = $this->kelvinToRankine($conv);
       }
     }
     if ($scale1 == "ran") {
       if ($scale2 == "fahr") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->rankineToFahrenheit($conv) .'</p></div>';
+        $converted_out = $this->rankineToFahrenheit($conv);
       } elseif ($scale2 == "cel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->rankineToCelsius($conv) .'</p></div>';
+        $converted_out = $this->rankineToCelsius($conv);
       } elseif ($scale2 == "kel") {
-        $this->out_Str .= '<div class="form-tag"><p>'. $this->rankineToKelvin($conv) .'</p></div>';
+        $converted_out = $this->rankineToKelvin($conv);
       }
     }
-    echo $this->out_Str;
+    echo '<div class="form-tag"><p>'. $converted_out .'</p></div>';
   }
   public function generateHTML() {
     echo '
