@@ -1,12 +1,11 @@
 <?php
 class Form
 {
-  public function __construct(
-    public $title,
-    public $method = "POST",
-    public $action = "",
-    public $list = []
-  ) {
+  public function __construct($title, $method, $action, $list) {
+    $this->title = $title;
+    $this->method = $method;
+    $this->action = $action;
+    $this->list = $list;
   }
 }
 class ConverterForm
@@ -100,10 +99,7 @@ $form_data = array(
   'newScale' => ''
 );
 
-$form = new Form(
-  title: "Temperature Converter",
-  list: $form_data
-);
+$form = new Form("Temperature Converter", "POST", "", $form_data);
 $temperature_form = new ConverterForm($form);
 
 $degree = '';
