@@ -17,6 +17,7 @@ class ConverterForm
     $this->k_base = 273.15;
     $this->r_base = 459.67;
     $this->out_Str = '';
+    $this->error_msg = '';
   }
   private function fahrenheitTo($input, $scale)
   {
@@ -106,26 +107,13 @@ $degree = '';
 $ogScale = '';
 $newScale = '';
 
-$degree_Err = '';
-$ogScale_Err = '';
-$newScale_Err = '';
-
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-  if(empty($_POST['degree'])) {
-    $degree_Err = 'Please enter a value!';
-  } else { 
-    $degree = $_POST['degree'];
-  }
-  if(empty($_POST['ogScale'])) {
-    $ogScale_Err = 'Please select the original scale!';
-  } else { 
-    $degree = $_POST['ogScale'];
-  }
-  if(empty($_POST['newScale'])) {
-    $newScale_Err = 'Please select the desired scale!'; 
-  } else { 
-    $degree = $_POST['newScale'];
+  foreach($form_data as $key => $val) {
+    if (empty( $_POST[$key] )) {
+      $temperature_form->error_msg .= "$key is required!\n";
+    } else {
+      $degree = $_POST[$key];
+    }
   }
 
   if(isset($_POST['degree'])) {

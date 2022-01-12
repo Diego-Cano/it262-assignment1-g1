@@ -19,7 +19,6 @@
         <option value="ran"<?php if(isset($_POST['ogScale']) && $_POST['ogScale'] == 'ran') echo 'selected = "selected" '
         ;?>>Rankine</option>
         </select> 
-        <span class="error"><?php echo $ogScale_Err; ?></span>
       </div>
       <div class="form-group">
           <!-- <label class="form-label" for="newScale">Desired scale?</label> -->
@@ -40,8 +39,6 @@
         </select>
       </div>
     </div>
-    <span class="error"><?php echo $degree_Err; ?></span>
-    <span class="error"><?php echo $newScale_Err; ?></span>
-
+    <span class="error"><?=$temperature_form->error_msg?></span>
   <input type="submit" value="Convert"/>
  </form> 
