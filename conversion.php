@@ -19,90 +19,58 @@ class ConverterForm
     $this->r_base = 459.67;
     $this->out_Str = '';
   }
-  private function fahrenheitToCelsius($fahr)
+  private function fahrenheitTo($input, $scale)
   {
-    return number_format(((int)$fahr - $this->f_base) * (5/9), 2);
+    if ($scale == "cel") {
+      return number_format(((int)$input - $this->f_base) * (5/9), 2);
+    } elseif ($scale == "kel") {
+      return number_format((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2);
+    } elseif ($scale == "ran") {
+      return number_format(((int)$input + $this->r_base), 2);
+    }
   }
-  private function fahrenheitToKelvin($input)
+  private function celsiusTo($input, $scale)
   {
-    return number_format((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2); 
+    if ($scale == "fahr") {
+      return number_format(((int)($input * (9/5)) + $this->f_base), 2);
+    } elseif ($scale == "kel") {
+      return number_format((((int)$input + $this->k_base) * (5/9)), 2);
+    } elseif ($scale == "ran") {
+      return number_format((((int)$input * $this->unit) + $this->r_base), 2);
+    }
   }
-  private function fahrenheitToRankine($input)
+  private function kelvinTo($input, $scale)
   {
-    return number_format(((int)$input + $this->r_base), 2); 
+    if ($scale == "fahr") {
+      return number_format((((int)$input - $this->k_base) * $this->unit + $this->f_base), 2);
+    } elseif ($scale == "cel") {
+      return number_format(((int)$input - $this->k_base), 2);
+    } elseif ($scale == "ran") {
+      return number_format(((int)$input * $this->unit), 2);
+    }
   }
-  private function celsiusToFahrenheit($input)
+  private function rankineTo($input, $scale)
   {
-    return number_format(((int)($input * (9/5)) + $this->f_base), 2);
-  }
-  private function celsiusToKelvin($input)
-  {
-    return number_format((((int)$input + $this->k_base) * (5/9)), 2);
-  }
-  private function celsiusToRankine($input)
-  {
-    return number_format((((int)$input * $this->unit) + $this->r_base), 2);
-  }
-  private function kelvinToFahrenheit($input)
-  {
-    return number_format((((int)$input - $this->k_base) * $this->unit + $this->f_base), 2);
-  }
-  private function kelvinToCelsius($input)
-  {
-    return number_format(((int)$input - $this->k_base), 2);
-  }
-  private function kelvinToRankine($input)
-  {
-    return number_format(((int)$input * $this->unit), 2);
-  }
-  private function rankineToFahrenheit($input)
-  {
-    return number_format(((int)$input - $this->r_base), 2);
-  }
-  private function rankineToCelsius($input)
-  {
-    return number_format((((int)$input - $this->r_base) * (5/9)), 2);
-  }
-  private function rankineToKelvin($input)
-  {
-    return number_format(((int)$input / $this->unit), 2);
+    if ($scale == "fahr") {
+      return number_format(((int)$input - $this->r_base), 2);
+    } elseif ($scale == "cel") {
+      return number_format((((int)$input - $this->r_base) * (5/9)), 2);
+    } elseif ($scale == "kel") {
+      return number_format(((int)$input / $this->unit), 2);
+    }
   }
   public function generateOutput($scale1, $scale2, $conv) {
     if ($scale1 == "fahr") {
-      if ($scale2 == "cel") {
-        $converted_out = $this->fahrenheitToCelsius($conv);
-      } elseif ($scale2 == "kel") {
-        $converted_out = $this->fahrenheitToKelvin($conv);
-      } elseif ($scale2 == "ran") {
-        $converted_out = $this->fahrenheitToRankine($conv);
-      }
+      $converted_out = $this->fahrenheitTo($conv, $scale2);
     }
     if ($scale1 == "cel") {
-      if ($scale2 == "fahr") {
-        $converted_out = $this->celsiusToFahrenheit($conv);
-      } elseif ($scale2 == "kel") {
-        $converted_out = $this->celsiusToKelvin($conv);
-      } elseif ($scale2 == "ran") {
-        $converted_out = $this->celsiusToRankine($conv);
-      }
+      $converted_out = $this->celsiusTo($conv, $scale2);
     }
     if ($scale1 == "kel") {
-      if ($scale2 == "fahr") {
-        $converted_out = $this->kelvinToFahrenheit($conv);
-      } elseif ($scale2 == "cel") {
-        $converted_out = $this->kelvinToCelsius($conv);
-      } elseif ($scale2 == "ran") {
-        $converted_out = $this->kelvinToRankine($conv);
-      }
+      $converted_out = $this->kelvinTo($conv, $scale2);
     }
     if ($scale1 == "ran") {
-      if ($scale2 == "fahr") {
-        $converted_out = $this->rankineToFahrenheit($conv);
-      } elseif ($scale2 == "cel") {
-        $converted_out = $this->rankineToCelsius($conv);
-      } elseif ($scale2 == "kel") {
-        $converted_out = $this->rankineToKelvin($conv);
-      }
+      $converted_out = $this->rankineTo($conv, $scale2);
     }
     echo '<div class="form-tag"><p>'. $converted_out .'</p></div>';
   }
