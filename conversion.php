@@ -1,196 +1,147 @@
 <?php
+class Form
+{
+  public function __construct($title, $method, $action, $list) {
+    $this->title = $title;
+    $this->method = $method;
+    $this->action = $action;
+    $this->list = $list;
+  }
+}
+class ConverterForm
+{
+  public function __construct(Form $form) {
+    $this->title = $form->title;
+    $this->unit = 1.8;
+    $this->f_base = 32;
+    $this->k_base = 273.15;
+    $this->r_base = 459.67;
+    $this->out_Str = '';
+    $this->error_msg = '';
+  }
+  private function fahrenheitTo($input, $scale)
+  {
+    if ($scale == "cel") {
+      return number_format(((int)$input - $this->f_base) * (5/9), 2);
+    } elseif ($scale == "kel") {
+      return number_format((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2);
+    } elseif ($scale == "ran") {
+      return number_format(((int)$input + $this->r_base), 2);
+    }
+  }
+  private function celsiusTo($input, $scale)
+  {
+    if ($scale == "fahr") {
+      return number_format(((int)($input * (9/5)) + $this->f_base), 2);
+    } elseif ($scale == "kel") {
+      return number_format((((int)$input + $this->k_base) * (5/9)), 2);
+    } elseif ($scale == "ran") {
+      return number_format((((int)$input * $this->unit) + $this->r_base), 2);
+    }
+  }
+  private function kelvinTo($input, $scale)
+  {
+    if ($scale == "fahr") {
+      return number_format((((int)$input - $this->k_base) * $this->unit + $this->f_base), 2);
+    } elseif ($scale == "cel") {
+      return number_format(((int)$input - $this->k_base), 2);
+    } elseif ($scale == "ran") {
+      return number_format(((int)$input * $this->unit), 2);
+    }
+  }
+  private function rankineTo($input, $scale)
+  {
+    if ($scale == "fahr") {
+      return number_format(((int)$input - $this->r_base), 2);
+    } elseif ($scale == "cel") {
+      return number_format((((int)$input - $this->r_base) * (5/9)), 2);
+    } elseif ($scale == "kel") {
+      return number_format(((int)$input / $this->unit), 2);
+    }
+  }
+  public function generateOutput($scale1, $scale2, $conv) {
+    if ($scale1 == "fahr") {
+      $converted_out = $this->fahrenheitTo($conv, $scale2);
+    }
+    if ($scale1 == "cel") {
+      $converted_out = $this->celsiusTo($conv, $scale2);
+    }
+    if ($scale1 == "kel") {
+      $converted_out = $this->kelvinTo($conv, $scale2);
+    }
+    if ($scale1 == "ran") {
+      $converted_out = $this->rankineTo($conv, $scale2);
+    }
+    echo '<div class="form-tag"><p>'. $converted_out .'</p></div>';
+  }
+  public function generateHTML() {
+    echo '
+    <fieldset>
+      <h1>'.$this->title.'</h1>
+      <div class="form-row">
+        <div class="form-group">
+          <input type="number" name="degree" size=4 placeholder="degrees">
+          <select class="select">
 
-        function fahrCel($temp) // converts Fahrenheit to Celcius and rounds the conversion to two decimals
-{
-        $f2c = ((int) $degree - 32) * (5 / 9); // conversion formula
-        $roundF2c = number_format($f2c, 2); // rounding to two decimals
-        return $roundF2c; // return rounded number
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="number" name="degree" size=4 placeholder="degrees">
+          <select class="select"></select>
+        </div>
+      </div>
+    </fieldset>
+    ';
+  }
 }
-        function fahrKel($temp) // converts Fahrenheit to Kelvin and rounds the conversion to two decimals
-{
-        $f2k = ((5 / 9) * (int) $degree) + 459.67;
-        $roundF2k = number_format($f2k, 2);
-        return $roundF2k;
-}
-        function fahrRan($temp) // converts Fahrenheit to Rankine and rounds the conversion to two decimals
-{
-        $f2r = (int) $degree + 459.67;
-        $roundF2r = number_format($f2r, 2);
-        return $roundF2r;
-}
-        function celFahr($temp) // converts Celcius to Fahrenheit and rounds the conversion to two decimals
-{       
-        $c2f = ((int) $degree * (9 / 5)) + 32;
-        $roundC2f = number_format($c2f, 2);
-        return $roundC2f;
-}
-        function celKel($temp) // converts Celcius to Kelvin and rounds the conversion to two decimals
-{  
-        $c2k = (int) $degree + 273.15;
-        $roundC2k = number_format($c2k, 2);
-        return $roundC2k;
-}
-        function celRan($temp) // converts Celcius to Rankine and rounds the conversion to two decimals
-{  
-        $c2r = ((int) $degree * (9 / 5)) + 491.67;
-        $roundC2r = number_format($c2r, 2);
-        return $roundC2r;
-}
-        function kelFahr($temp) // converts Kelvin to Fahrenheit and rounds the conversion to two decimals
-{  
-        $k2f = (((int) $degree - 273.15) * (9 / 5)) + 32;
-        $roundK2f = number_format($k2f, 2);
-        return $roundK2f;
-}
-        function kelCel($temp) // converts Kelvin to Celcius and rounds the conversion to two decimals
-{  
-        $k2c = (int) $degree - 273.15;
-        $roundK2c = number_format($k2c, 2);
-        return $roundK2c;
-}
-        function kelRan($temp) // converts Kelvin to Rankine and rounds the conversion to two decimals
-{  
-        $k2r = (int) $degree / 1.8;
-        $roundK2r = number_format($k2r, 2);
-        return $roundK2r;
-}
-        function ranFahr($temp) // converts Rankine to Fahrenheit and rounds the conversion to two decimals
-{  
-        $r2f = (int) $degree - 459.67;
-        $roundR2f = number_format($c2k, 2);
-        return $roundR2f;
-}
-        function ranCel($temp) // converts Rankine to Celcius and rounds the conversion to two decimals
-{  
-        $r2c = ((int) $degree - 491.67) * (5 / 9);
-        $roundR2c = number_format($c2k, 2);
-        return $roundR2c;
-}
-        function ranKel($temp) // converts Rankine to Kelvin and rounds the conversion to two decimals
-{  
-        $r2k = (int) $degree * 1.8;
-        $roundR2k = number_format($c2k, 2);
-        return $roundR2k;
-}
+$form_data = array(
+  'degree' => '',
+  'ogScale' => '',
+  'newScale' => ''
+);
+
+$form = new Form("Temperature Converter", "POST", "", $form_data);
+$temperature_form = new ConverterForm($form);
 
 $degree = '';
 $ogScale = '';
 $newScale = '';
 
-$degree_Err = '';
-$ogScale_Err = '';
-$newScale_Err = '';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if (empty($_POST['degree'])) {
-        $degree_Err = 'Please enter a value!'; // making sure user has filled out degree value
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  foreach($form_data as $key => $val) {
+    if (empty( $_POST[$key] )) {
+      $temperature_form->error_msg .= "$key is required!\n";
     } else {
-        $degree = $_POST['degree'];}
+      $degree = $_POST[$key];
+    }
+  }
 
-    if (empty($_POST['ogScale'])) {
-        $degree_Err = 'Please select the original scale!'; // making sure user has filled out degree value
-    } else {
-        $degree = $_POST['ogScale'];}
+  if(isset($_POST['degree'])) {
+    $degree = $_POST['degree'];
+    $ogScale = $_POST['ogScale'];
+    $newScale = $_POST['newScale'];
 
-    if (empty($_POST['newScale'])) {
-        $degree_Err = 'Please select the desired scale!'; // making sure user has filled out degree value
-    } else {
-        $degree = $_POST['newScale'];}
-
-    if (isset($_POST['degree'])) {
-        $degree = $_POST['degree'];
-        $ogScale = $_POST['ogScale'];
-        $newScale = $_POST['newScale'];
-
-
-        if (($degree != null) && (is_numeric($degree))) { // making sure degree value is filled and numeric
-
-            if (($ogScale == "fahr") && ($newScale == "cel")) { // Fahrenheit --> Celcius
-                $conv = fahrCel($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "fahr") && ($newScale == "kel")) { // Fahrenheit --> Kelvin
-                $conv = fahrKel($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "fahr") && ($newScale == "ran")) { // Fahrenheit --> Rankine
-                $conv = fahrRan($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "cel") && ($newScale == "fahr")) { // Celcius --> Fahrenheit
-                $conv = celFahr($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "cel") && ($newScale == "kel")) { // Celcius --> Kelvin
-                $conv = celKel($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "cel") && ($newScale == "ran")) { // Celcius --> Rankine
-                $conv = celRan($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "kel") && ($newScale == "fahr")) { // Kelvin --> Fahrenheit
-                $conv = kelFahr($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "kel") && ($newScale == "cel")) { // Kelvin --> Celcius
-                $conv = kelCel($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "kel") && ($newScale == "ran")) { // Kelvin --> Rankine
-                $conv = kelRan($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "ran") && ($newScale == "fahr")) { // Rankine --> Fahrenheit
-                $conv = ranFahr($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "ran") && ($newScale == "cel")) { // Rankine --> Fahrenheit
-                $conv = ranCel($degree);
-                echo $conv;
-            }
-
-            if (($ogScale == "ran") && ($newScale == "kel")) { // Rankine --> Fahrenheit
-                $conv = ranKel($degree);
-                echo $conv;
-            }
-
-        } // end inner if
-        elseif ($ogScale == $newScale) { // making sure the two temperature types chosen are not the same
-            echo "Please choose a different temperature type to convert.";
-        }
-        else {
-            echo 'Please enter a numeric value.'; 
-        }
-
-    } // end outer if
-
+    if(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
+      $temperature_form->generateOutput($ogScale, $newScale, $degree);
+    } // end inner if
+    else {
+      echo 'Please enter a numeric value!';
+    }
+  } // end outer if
 } // end server request
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Temperature Converter: IT 262 Group 1</title>
-    <link href="css/styles.css" type="text/css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Temperature Converter: IT 262 Group 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/styles.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-    <?php
-include 'includes/form.php';
+<?php
+  include('includes/form.php');
 ?>
 </body>
 

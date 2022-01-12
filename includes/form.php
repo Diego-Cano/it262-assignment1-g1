@@ -2,7 +2,7 @@
 <?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
 " method="post">
 <fieldset>
-    <legend>Group 1's Temperature Converter</legend>
+    <legend>A Temperature Converter</legend>
     <label for="degree">How many degrees?</label>
     <input type = "text" name = "degree" size=4> 
     <span class="error"><?php echo $degree_Err; ?></span>
