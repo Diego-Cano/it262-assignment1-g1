@@ -1,9 +1,9 @@
+<!-- form html -->
 <form action ="
 <?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
 " method=<?=$form->method?>>
   <fieldset>
     <h1><?=$temperature_form->title?></h1>
-    <!-- <label class="form-label"  for="ogScale">Original scale?</label> -->
     <div class="form-row">
       <div class="form-group">
         <input type="number" name="degree" size=4 placeholder="degrees">
@@ -21,9 +21,7 @@
         </select> 
       </div>
       <div class="form-group">
-          <!-- <label class="form-label" for="newScale">Desired scale?</label> -->
         <div class="form-blank"></div>
-        <!-- <input type="number" name="degree-2" size=4 value=""> -->
         <select name="newScale" class="select">
         <option value="" NULL
         <?php if(isset($_POST['newScale']) && $_POST['newScale'] == NULL) echo 'selected = "unselected" '
