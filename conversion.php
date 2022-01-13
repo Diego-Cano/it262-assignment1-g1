@@ -35,41 +35,41 @@
     private function fahrenheitTo($input, $scale)
     {
       if ($scale == "cel") {
-        return numberFormat(((int)$input - $this->f_base) * (5/9), 2);
+        return number_format(((int)$input - $this->f_base) * (5/9), 2);
       } elseif ($scale == "kel") {
-        return numberFormat((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2);
+        return number_format((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2);
       } elseif ($scale == "ran") {
-        return numberFormat(((int)$input + $this->r_base), 2);
+        return number_format(((int)$input + $this->r_base), 2);
       }
     }
     private function celsiusTo($input, $scale)
     {
       if ($scale == "fahr") {
-        return numberFormat(((int)($input * (9/5)) + $this->f_base), 2);
+        return number_format(((int)($input * (9/5)) + $this->f_base), 2);
       } elseif ($scale == "kel") {
-        return numberFormat((((int)$input + $this->k_base) * (5/9)), 2);
+        return number_format((((int)$input + $this->k_base) * (5/9)), 2);
       } elseif ($scale == "ran") {
-        return numberFormat((((int)$input * $this->unit) + $this->r_base), 2);
+        return number_format((((int)$input * $this->unit) + $this->r_base), 2);
       }
     }
     private function kelvinTo($input, $scale)
     {
       if ($scale == "fahr") {
-        return numberFormat((((int)$input - $this->k_base) * $this->unit + $this->f_base), 2);
+        return number_format((((int)$input - $this->k_base) * $this->unit + $this->f_base), 2);
       } elseif ($scale == "cel") {
-        return numberFormat(((int)$input - $this->k_base), 2);
+        return number_format(((int)$input - $this->k_base), 2);
       } elseif ($scale == "ran") {
-        return numberFormat(((int)$input * $this->unit), 2);
+        return number_format(((int)$input * $this->unit), 2);
       }
     }
     private function rankineTo($input, $scale)
     {
       if ($scale == "fahr") {
-        return numberFormat(((int)$input - $this->r_base), 2);
+        return number_format(((int)$input - $this->r_base), 2);
       } elseif ($scale == "cel") {
-        return numberFormat((((int)$input - $this->r_base) * (5/9)), 2);
+        return number_format((((int)$input - $this->r_base) * (5/9)), 2);
       } elseif ($scale == "kel") {
-        return numberFormat(((int)$input / $this->unit), 2);
+        return number_format(((int)$input / $this->unit), 2);
       }
     }
     public function generateOutput($scale1, $scale2, $conv) {
@@ -107,41 +107,35 @@
       ';
     }
   }
-  $formData = array(
+  $form_data = array(
     'degree' => '',
     'ogScale' => '',
     'newScale' => ''
   );
   
-  $form = new Form("Temperature Converter", "POST", "", $formData);
+  $form = new Form("Temperature Converter", "POST", "", $form_data);
   $temperature_form = new ConverterForm($form);
   
   $degree = '';
   $ogScale = '';
   $newScale = '';
   
-  $formData['degree'] = 'Number of degrees';
-  $formData['ogScale'] = 'Original scale';
-  $formData['newScale'] = 'New scale';
-
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    foreach($formData as $key => $val) {
+    foreach($form_data as $key => $val) {
       if (empty( $_POST[$key] )) {
-        echo "<span class='error'>$val is required!</span>\n";
+        echo "<span class='error'>$key is required!</span>\n";
       } else {
         $degree = $_POST[$key];
       }
     }
   
+
     if(isset($_POST['degree'])) {
       $degree = $_POST['degree'];
       $ogScale = $_POST['ogScale'];
       $newScale = $_POST['newScale'];
-      
-      if ($ogScale == $newScale) {
-        echo '<span class="error">Please make sure temperature types are different!</span>';
-    }
-      elseif(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
+  
+      if(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
         $temperature_form->generateOutput($ogScale, $newScale, $degree);
       } // end inner if
       else {
