@@ -135,6 +135,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
 <meta charset="UTF-8">
 <title>Temperature Converter: IT 262 Group 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/styles.css" type="text/css" rel="stylesheet">
 </head>
 
