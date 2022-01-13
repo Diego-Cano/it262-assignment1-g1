@@ -145,11 +145,11 @@
         $temperature_form->generateOutput($original
         , $desired, $degree); // call on converter handler method to perform the appropriate operation for the form data
       } // end inner if
-      elseif((is_numeric($degree)) == FALSE) {
-        echo '<span class="error">Please enter a numeric value!</span>';
+      elseif((is_numeric($degree)) == FALSE) { // if non-numeric
+        echo '<span class="error">Please enter a numeric value!</span>'; // error message
       }
       else {
-        echo '<span class="error">Please fill all fields!</span>';
+        echo '<span class="error">Please fill all fields!</span>'; // if non-numeric and/or not filled
       }
     } // end outer if
   } // end server request
