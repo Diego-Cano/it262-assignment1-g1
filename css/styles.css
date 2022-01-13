@@ -9,7 +9,7 @@
       text-align: center;
   }
   label {
-      padding-bottom: 5px;
+    padding: 5px 0px 5px 0px;
   }
   form, fieldset, .form-group, .form-row{
     display: flex;
