@@ -20,8 +20,8 @@
 ;?>>Rankine</option> 
 </select> 
 
- <label for="desired">Desired scale?</label>
- <select name="desired">
+<label for="desired">Desired scale?</label>
+<select name="desired">
 <option value="" NULL
 <?php if(isset($_POST['desired']) && $_POST['desired'] == NULL) echo 'selected = "unselected" '
 ;?>>
