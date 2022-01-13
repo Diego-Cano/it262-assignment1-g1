@@ -25,3 +25,8 @@ Late - Project Management, Code Review<br>
 Early - Repo Management, Research<br>
 Middle - Form html string (the else)<br>
 Late - Code Review, Repo Management<br>
+
+[Devvy](https://github.com/DevonDeVaughnn)<br>
+Early - N/A<br>
+Middle - Another version of code<br>
+Late - Code Review, Testing<br>
