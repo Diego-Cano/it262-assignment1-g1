@@ -1,14 +1,13 @@
-
 <form action ="
 <?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ;?>
 " method="post">
 <fieldset>
-    <legend>A Temperature Converter</legend>
-    <label for="degree">How many degrees?</label>
-    <input type = "text" name = "degree" size=4>
+<legend>A Temperature Converter</legend>
+<label for="degree">How many degrees?</label>
+<input type = "text" name = "degree" size=4>
 
- <label for="original">Original scale?</label>
- <select name="original"><option value="" NULL
+<label for="original">Original scale?</label>
+<select name="original"><option value="" NULL
 <?php if(isset($_POST['original']) && $_POST['original'] == NULL) echo 'selected = "unselected" '
 ;?>>
 <option value="fahr"<?php if(isset($_POST['original']) && $_POST['original'] == 'fahr') echo 'selected = "selected" '
@@ -36,5 +35,5 @@
 ;?>>Rankine</option> 
 </select> 
 
- <input type = "submit" value = "Convert"/> 
- </form> 
+<input type = "submit" value = "Convert"/> 
+</form> 
