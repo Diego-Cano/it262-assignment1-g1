@@ -129,7 +129,6 @@
       }
     }
   
-
     if(isset($_POST['degree'])) {
       $degree = $_POST['degree'];
       $ogScale = $_POST['ogScale'];
@@ -138,6 +137,9 @@
       if(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
         $temperature_form->generateOutput($ogScale, $newScale, $degree);
       } // end inner if
+      elseif($ogScale == $newScale) {
+        echo '<span class="error">Please make sure scales do not match!<span>';
+      }
       else {
         echo '<span class="error">Please fill all fields!</span>';
       }
