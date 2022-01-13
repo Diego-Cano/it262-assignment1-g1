@@ -40,6 +40,8 @@
         return number_format((((int)$input - $this->f_base) * (5/9) + $this->k_base), 2);
       } elseif ($scale == "ran") {
         return number_format(((int)$input + $this->r_base), 2);
+      } elseif ($scale == "fahr") { // if scales are the same 
+        return number_format(((int)$input), 2); 
       }
     }
     private function celsiusTo($input, $scale)
@@ -50,6 +52,8 @@
         return number_format((((int)$input + $this->k_base) * (5/9)), 2);
       } elseif ($scale == "ran") {
         return number_format((((int)$input * $this->unit) + $this->r_base), 2);
+      } elseif ($scale == "cel") {
+        return number_format(((int)$input), 2);
       }
     }
     private function kelvinTo($input, $scale)
@@ -60,6 +64,8 @@
         return number_format(((int)$input - $this->k_base), 2);
       } elseif ($scale == "ran") {
         return number_format(((int)$input * $this->unit), 2);
+      } elseif ($scale == "kel") {
+        return number_format(((int)$input), 2);
       }
     }
     private function rankineTo($input, $scale)
@@ -70,6 +76,8 @@
         return number_format((((int)$input - $this->r_base) * (5/9)), 2);
       } elseif ($scale == "kel") {
         return number_format(((int)$input / $this->unit), 2);
+      } elseif ($scale == "ran") {
+        return number_format(((int)$input), 2);
       }
     }
     public function generateOutput($scale1, $scale2, $conv) {
@@ -137,8 +145,8 @@
       if(($degree != NULL) && (is_numeric($degree))){ // making sure degree value is filled and numeric
         $temperature_form->generateOutput($ogScale, $newScale, $degree);
       } // end inner if
-      elseif($ogScale == $newScale) {
-        echo '<span class="error">Please make sure scales do not match!<span>';
+      elseif((is_numeric($degree)) == FALSE) {
+        echo '<span class="error">Please enter a numeric value!</span>';
       }
       else {
         echo '<span class="error">Please fill all fields!</span>';
